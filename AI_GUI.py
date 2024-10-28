@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-import AI_LIBRARY  # Import your library_database file with functions defined
+import AI_LIBRARY  # Import your AI_LIBRARY file with functions defined
 
 # Initialize database
 AI_LIBRARY.initialize_database()
@@ -87,7 +87,7 @@ class LibraryApp:
             messagebox.showerror("Input Error", "Rating must be between 1 and 5.")
             return
         
-        success = library_database.add_book(title, author, genre, int(rating), pub_date)
+        success = AI_LIBRARY.add_book(title, author, genre, int(rating), pub_date)
         
         if success:
             messagebox.showinfo("Success", "Book added successfully.")
@@ -100,7 +100,7 @@ class LibraryApp:
         
         tk.Label(self.main_frame, text="All Books", font=("Helvetica", 16)).pack(pady=10)
         
-        books = library_database.fetch_all_books()
+        books = AI_LIBRARY.fetch_all_books()
         if not books:
             tk.Label(self.main_frame, text="No books in the database.").pack()
             return
@@ -124,7 +124,7 @@ class LibraryApp:
     def search_book(self):
         keyword = self.search_entry.get()
         
-        results = library_database.search_books(keyword)
+        results = AI_LIBRARY.search_books(keyword)
         if not results:
             messagebox.showinfo("Search Results", "No matching books found.")
             return
@@ -156,7 +156,7 @@ class LibraryApp:
             messagebox.showerror("Input Error", "Invalid Book ID. Please enter a valid number.")
             return
 
-        if library_database.delete_book_by_id(book_id):
+        if AI_LIBRARY.delete_book_by_id(book_id):
             messagebox.showinfo("Success", "Book deleted successfully.")
             self.display_view_all()
         else:
