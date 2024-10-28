@@ -101,29 +101,29 @@ class LibraryApp:
         # AI Code, edited
         
         # Title input field
-        tk.Label(self.input_frame, text="Title:").grid(row=0, column=0, padx=5, pady=5)
+        tk.Label(self.input_frame, text="Title:").pack(anchor="w")
         self.title_entry = tk.Entry(self.input_frame)
-        self.title_entry.grid(row=0, column=1, padx=5, pady=5)
+        self.title_entry.pack(fill="x", padx=5, pady=2)
 
         # Author input field
-        tk.Label(self.input_frame, text="Author:").grid(row=1, column=0, padx=5, pady=5)
+        tk.Label(self.input_frame, text="Author:").pack(anchor="w")
         self.author_entry = tk.Entry(self.input_frame)
-        self.author_entry.grid(row=1, column=1, padx=5, pady=5)
+        self.author_entry.pack(fill="x", padx=5, pady=2)
 
         # Genre input field
-        tk.Label(self.input_frame, text="Genre:").grid(row=2, column=0, padx=5, pady=5)
+        tk.Label(self.input_frame, text="Genre:").pack(anchor="w")
         self.genre_entry = tk.Entry(self.input_frame)
-        self.genre_entry.grid(row=2, column=1, padx=5, pady=5)
+        self.genre_entry.pack(fill="x", padx=5, pady=2)
 
         # Rating input field
-        tk.Label(self.input_frame, text="Rating (1-5):").grid(row=3, column=0, padx=5, pady=5)
+        tk.Label(self.input_frame, text="Rating (1-5):").pack(anchor="w")
         self.rating_entry = tk.Entry(self.input_frame)
-        self.rating_entry.grid(row=3, column=1, padx=5, pady=5)
+        self.rating_entry.pack(fill="x", padx=5, pady=2)
 
         # Publication Date input field
-        tk.Label(self.input_frame, text="Publication Date:").grid(row=4, column=0, padx=5, pady=5)
+        tk.Label(self.input_frame, text="Publication Date (YYYY-MM-DD):").pack(anchor="w")
         self.pub_date_entry = tk.Entry(self.input_frame)
-        self.pub_date_entry.grid(row=4, column=1, padx=5, pady=5)
+        self.pub_date_entry.pack(fill="x", padx=5, pady=2)
         
         
 
