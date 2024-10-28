@@ -40,6 +40,8 @@ def menu():
                 bk_rating,
                 bk_pub_date
             )
+            
+            library_database.display_books()
         
         elif user_input == '2':
             books = library_database.display_books()
@@ -54,7 +56,20 @@ def menu():
                 print(record)
             
         elif user_input == '3':
-            library_database.find_book()
+            library_database.display_books()
+            
+            bk_id = int(input("Enter the book ID: "))
+            
+            book = library_database.find_book(bk_id)
+            
+            if book:
+                # print each item in the tuple using the [] bracket operator
+                # to retrieve each itme in the tuple
+                record = f"ID:({book[0]}) {book[1]} "
+                record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
+                print(record)
+            else:
+                print("Book not found.")
             
         elif user_input == '4':
             library_database.delete_book()
