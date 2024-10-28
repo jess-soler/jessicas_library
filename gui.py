@@ -79,22 +79,22 @@ class LibraryApp:
         # add book button
         # used format from AI code
         self.add_book_button = tk.Button(self.button_frame, text="Add Book", command=self.call_add_book)
-        self.add_book_button.pack(side="top", fill="x", padx=5, pady=5)
+        self.add_book_button.pack(side="top", fill="x", padx=5, pady=15)
         
         # edit book button
         # used format from AI code
         self.edit_book_button = tk.Button(self.button_frame, text="Edit Book", command=self.call_edit_book)
-        self.edit_book_button.pack(side="top", fill="x", padx=5, pady=5)
+        self.edit_book_button.pack(side="top", fill="x", padx=5, pady=15)
         
         # delete book button
         # used format from AI code
         self.delete_book_button = tk.Button(self.button_frame, text="Delete Book", command=self.call_delete_book)
-        self.delete_book_button.pack(side="top", fill="x", padx=5, pady=5)
+        self.delete_book_button.pack(side="top", fill="x", padx=5, pady=15)
         
         # close app button
         # used format from AI code
         self.close_app_button = tk.Button(self.button_frame, text="Close App", command=self.close_app)
-        self.close_app_button.pack(side="top", fill="x", padx=5, pady=5)
+        self.close_app_button.pack(side="top", fill="x", padx=5, pady=15)
         
     def create_input_fields(self):
         # title, author, genre, rating, pub_date
