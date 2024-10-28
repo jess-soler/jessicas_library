@@ -23,16 +23,20 @@ def main():
     
 def menu():
     while True:
+        # get user input for menu selection
         user_input = input(MENU_PROMPT)
         
+        # (1) Add new book
         if user_input == '1':
+            
             # get data from user
             bk_title = input("Enter the book title: ")
             bk_author = input("Enter the author: ")
             bk_genre = input("Enter the genre: ")
             bk_rating = input("Enter rating (1-5): ")
             bk_pub_date = input("Enter publication date: ")
-        
+
+            # add book to database
             library_database.add_book(
                 bk_title,
                 bk_author,
@@ -41,22 +45,18 @@ def menu():
                 bk_pub_date
             )
             
-            library_database.display_books()
+            # display all books
+            library_database.print_books()
         
+        # (2) Display all books
         elif user_input == '2':
-            books = library_database.display_books()
             
-            # iterate through the list of tuples returned
-            # from the database query
-            for book in books:
-                # print each item in the tuple using the [] bracket operator
-                # to retrieve each itme in the tuple
-                record = f"ID:({book[0]}) {book[1]} "
-                record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
-                print(record)
+            # display all books
+            library_database.print_books()
             
         elif user_input == '3':
-            library_database.display_books()
+            # display all books
+            library_database.print_books()
             
             bk_id = int(input("Enter the book ID: "))
             
@@ -72,7 +72,14 @@ def menu():
                 print("Book not found.")
             
         elif user_input == '4':
-            library_database.delete_book()
+            # display all books
+            library_database.print_books()
+            
+            book = int(input("Enter the book ID: "))
+            
+            library_database.delete_book(book)
+            
+            library_database.print_books()
             
         elif user_input == '5':
             break

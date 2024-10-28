@@ -39,6 +39,13 @@ FETCH_ALL_RECORDS = "SELECT * FROM tbl_book;"
 
 FETCH_RECORD = "SELECT * FROM tbl_book WHERE bk_id = ?;"
 
+DELETE_RECORD = "DELETE FROM tbl_book WHERE bk_id = ?;"
+
+
+
+
+#---FUNCTIONS--------------------------------------------------------------------FUNCTIONS----#
+
 def create_table():
     # connect to database, automatically manages resources like files and databases
     # ensures resources are cleaned up, like closing a database connection,
@@ -69,7 +76,7 @@ def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
         )
     
 
-def display_books():
+def fetch_books():
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database
         cursor = connection.cursor()
@@ -78,7 +85,20 @@ def display_books():
         # each tuple is a record/row in the database
         records = cursor.execute(FETCH_ALL_RECORDS).fetchall()
         
-        print(records)
+        return records
+        
+def print_books():
+            # display all books
+            books = fetch_books()
+            
+            # iterate through the list of tuples returned
+            # from the database query
+            for book in books:
+                # print each item in the tuple using the [] bracket operator
+                # to retrieve each itme in the tuple
+                record = f"ID:({book[0]}) {book[1]} "
+                record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
+                print(record)
 
 
 def find_book(bk_id: int):
@@ -94,5 +114,10 @@ def find_book(bk_id: int):
     
 
 
-def delete_book():
-    pass
+def delete_book(bk_id: int):
+    with sqlite3.connect(DATABASE) as connection:
+        # create a cursor object to interact with the database
+        cursor = connection.cursor()
+        
+        # delete the selected record
+        cursor.execute(DELETE_RECORD, (bk_id, ))
