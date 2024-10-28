@@ -98,7 +98,7 @@ class LibraryApp:
         
     def create_input_fields(self):
         # title, author, genre, rating, pub_date
-        # AI Code
+        # AI Code, edited
         
         # Title input field
         tk.Label(self.input_frame, text="Title:").grid(row=0, column=0, padx=5, pady=5)
