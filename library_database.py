@@ -120,14 +120,6 @@ def find_book():
             print(record)
         else:
                 print("Book not found.")
-        
-        # return record
-    
-    
-    
-
-            
-
 
 
 def delete_book(bk_id: int):
@@ -137,3 +129,26 @@ def delete_book(bk_id: int):
         
         # delete the selected record
         cursor.execute(DELETE_RECORD, (bk_id, ))
+        
+def edit_book(bk_id: int):
+    with sqlite3.connect(DATABASE) as connection:
+        # create a cursor object to interact with the database
+        cursor = connection.cursor()
+        
+        # delete the selected record
+        cursor.execute(DELETE_RECORD, (bk_id, ))
+        
+        bk_title = input("Enter the book title: ")
+        bk_author = input("Enter the author: ")
+        bk_genre = input("Enter the genre: ")
+        bk_rating = input("Enter rating (1-5): ")
+        bk_pub_date = input("Enter publication date: ")
+
+        # add book to database
+        add_book(
+            bk_title,
+            bk_author,
+            bk_genre,
+            bk_rating,
+            bk_pub_date
+        )
