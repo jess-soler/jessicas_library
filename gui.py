@@ -86,19 +86,27 @@ class LibraryApp:
         self.delete_book_button = tk.Button(self.button_frame, text="Delete Book", command=self.call_delete_book)
         self.delete_book_button.pack(side="top", fill="x", padx=5, pady=5)
         
+        # close app button
+        # used format from AI code
+        self.close_app_button = tk.Button(self.button_frame, text="Close App", command=self.close_app)
+        self.close_app_button.pack(side="top", fill="x", padx=5, pady=5)
+        
         
 #---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
 # Call to: library_database.py
 # Add, Edit, Delete
 
-def call_add_book():
-    library_database.add_book()
-    
-def call_edit_book():
-    library_database.edit_book()
-    
-def call_delete_book():
-    library_database.delete_book()
+    def call_add_book():
+        library_database.add_book()
+        
+    def call_edit_book():
+        library_database.edit_book()
+        
+    def call_delete_book():
+        library_database.delete_book()
+        
+    def close_app():
+        library_database.close_app()
     
 
     

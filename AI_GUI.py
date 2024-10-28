@@ -6,8 +6,8 @@ import AI_LIBRARY  # Import your AI_LIBRARY file with functions defined
 # AI_LIBRARY.initialize_database()
 
 # Main App Class
-class LibraryApp:
-    def __init__(self, root):
+# class LibraryApp:
+#     def __init__(self, root):
         # self.root = root
         # self.root.title("Library Database")
         # self.root.geometry("600x400")
@@ -19,28 +19,28 @@ class LibraryApp:
         # Menu Buttons
         # self.create_menu_buttons()
         
-        # Set default view
-        self.display_view_all()
+        # # Set default view
+        # self.display_view_all()
 
-    def create_menu_buttons(self):
-        # menu_frame = tk.Frame(self.root, bd=2, relief=tk.RAISED)
-        # menu_frame.pack(fill="x")
+    # def create_menu_buttons(self):
+    #     # menu_frame = tk.Frame(self.root, bd=2, relief=tk.RAISED)
+    #     # menu_frame.pack(fill="x")
 
-        btn_add = tk.Button(menu_frame, text="Add Book", command=self.display_add_book)
-        btn_add.pack(side="left", padx=5, pady=5)
+    #     btn_add = tk.Button(menu_frame, text="Add Book", command=self.display_add_book)
+    #     btn_add.pack(side="left", padx=5, pady=5)
         
-        btn_view = tk.Button(menu_frame, text="View All Books", command=self.display_view_all)
-        btn_view.pack(side="left", padx=5, pady=5)
+    #     btn_view = tk.Button(menu_frame, text="View All Books", command=self.display_view_all)
+    #     btn_view.pack(side="left", padx=5, pady=5)
         
-        btn_search = tk.Button(menu_frame, text="Search Book", command=self.display_search_book)
-        btn_search.pack(side="left", padx=5, pady=5)
+    #     btn_search = tk.Button(menu_frame, text="Search Book", command=self.display_search_book)
+    #     btn_search.pack(side="left", padx=5, pady=5)
         
-        btn_delete = tk.Button(menu_frame, text="Delete Book", command=self.display_delete_book)
-        btn_delete.pack(side="left", padx=5, pady=5)
+    #     btn_delete = tk.Button(menu_frame, text="Delete Book", command=self.display_delete_book)
+    #     btn_delete.pack(side="left", padx=5, pady=5)
         
-    def clear_main_frame(self):
-        for widget in self.main_frame.winfo_children():
-            widget.destroy()
+    # def clear_main_frame(self):
+    #     for widget in self.main_frame.winfo_children():
+    #         widget.destroy()
 
     def display_add_book(self):
         self.clear_main_frame()
