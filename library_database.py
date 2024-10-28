@@ -60,6 +60,7 @@ def create_table():
         cursor.execute(CREATE_TABLE)
         
 
+# GUI implemented
 def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database
@@ -133,7 +134,9 @@ def delete_book(bk_id: int):
         # delete the selected record
         cursor.execute(DELETE_RECORD, (bk_id, ))
         
-def edit_book(bk_id: int):
+        
+# GUI implemented
+def edit_book(bk_id: int, bk_title: str, bk_author: str, bk_genre: str, bk_rating: int, bk_pub_date: str):
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database
         cursor = connection.cursor()
@@ -141,11 +144,7 @@ def edit_book(bk_id: int):
         # delete the selected record
         cursor.execute(DELETE_RECORD, (bk_id, ))
         
-        bk_title = input("Enter the book title: ")
-        bk_author = input("Enter the author: ")
-        bk_genre = input("Enter the genre: ")
-        bk_rating = input("Enter rating (1-5): ")
-        bk_pub_date = input("Enter publication date: ")
+
 
         # add book to database
         add_book(

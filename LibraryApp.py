@@ -147,7 +147,8 @@ class LibraryApp:
     def create_database_display(self):
         # create a treeview to display the database
         # AI Code, edited
-        self.tree = ttk.Treeview(self.database_display_frame, columns=("Title", "Author", "Genre", "Rating", "Publication Date"), show="headings")
+        self.tree = ttk.Treeview(self.database_display_frame, columns=("ID", "Title", "Author", "Genre", "Rating", "Publication Date"), show="headings")
+        self.tree.heading("ID", text="ID")
         self.tree.heading("Title", text="Title")
         self.tree.heading("Author", text="Author")
         self.tree.heading("Genre", text="Genre")
@@ -183,6 +184,8 @@ class LibraryApp:
 # Add, Edit, Save, Delete
 
     def call_add_book(self):
+        
+        # .get() the text from the entry field
         title = self.title_entry.get()
         author = self.author_entry.get()
         genre = self.genre_entry.get()
@@ -191,8 +194,18 @@ class LibraryApp:
         
         library_database.add_book(title, author, genre, rating, pub_date)
         self.update_treeview()
-    def call_edit_book():
-        library_database.edit_book()
+        
+        
+    def call_edit_book(self):
+        
+        # .get() the text from the entry field
+        title = self.title_entry.get()
+        author = self.author_entry.get()
+        genre = self.genre_entry.get()
+        rating = self.rating_entry.get()
+        pub_date = self.pub_date_entry.get()
+
+        library_database.edit_book(title, author, genre, rating, pub_date)
         
     def call_delete_book():
         library_database.delete_book()
