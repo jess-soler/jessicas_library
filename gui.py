@@ -52,6 +52,7 @@ class LibraryApp:
         """
         self.input_frame.place(x=100, y=10, width=380, height=240)
         
+        
         # upper right frame = buttons
         """
             upper right frame is 400 pixels wide
@@ -75,6 +76,8 @@ class LibraryApp:
         self.database_display_frame = tk.Frame(self.main_app_window, bd=2, relief=tk.RAISED)
         self.database_display_frame.place(x=10, y=250, width=1180, height=240)
         
+        
+        
     def create_buttons(self):
         # add, edit, delete, close buttons
         
@@ -93,10 +96,19 @@ class LibraryApp:
         self.delete_book_button = tk.Button(self.button_frame, text="Delete Book", command=self.call_delete_book)
         self.delete_book_button.pack(side="top", fill="x", padx=5, pady=15)
         
+        # save button
+        # used format from AI code
+        self.save_button = tk.Button(self.button_frame, text="Save", command=self.call_save_book)
+        self.save_button.pack(side="top", fill="x", padx=5, pady=15)
+        
         # close app button
         # used format from AI code
         self.close_app_button = tk.Button(self.button_frame, text="Close App", command=self.close_app)
         self.close_app_button.pack(side="top", fill="x", padx=5, pady=15)
+        
+
+        
+        
         
     def create_input_fields(self):
         # title, author, genre, rating, pub_date
@@ -128,6 +140,7 @@ class LibraryApp:
         self.pub_date_entry.pack(fill="x", padx=5, pady=2)
         
         
+        
     def create_database_display(self):
         # create a treeview to display the database
         # AI Code, edited
@@ -139,12 +152,20 @@ class LibraryApp:
         self.tree.heading("Publication Date", text="Publication Date")
         self.tree.pack(fill="both", expand=True)        
         
+        # insert data into treeview
         
+        # add a scrollbar
+        scrollbar = ttk.Scrollbar(self.database_display_frame, orient="vertical", command=self.tree.yview)
+        scrollbar.pack(side="right", fill="y")
+        self.tree.configure(yscrollcommand=scrollbar.set)
+        
+        self.tree.pack(padx=10, pady=10, fill="both", expand=True)
 
+        
         
 #---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
 # Call to: library_database.py
-# Add, Edit, Delete
+# Add, Edit, Save, Delete
 
     def call_add_book():
         library_database.add_book()
@@ -155,10 +176,11 @@ class LibraryApp:
     def call_delete_book():
         library_database.delete_book()
         
+    def call_save_book():
+        library_database.save_book()
+        
     def close_app():
         library_database.close_app()
-    
-
     
 
 

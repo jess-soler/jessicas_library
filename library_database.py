@@ -153,6 +153,9 @@ def edit_book(bk_id: int):
             bk_pub_date
         )
         
+    def save_book():
+        pass
+        
     def close_app():
         print("Goodbye!")
         exit()
