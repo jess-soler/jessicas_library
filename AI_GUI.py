@@ -8,23 +8,23 @@ import AI_LIBRARY  # Import your AI_LIBRARY file with functions defined
 # Main App Class
 class LibraryApp:
     def __init__(self, root):
-        self.root = root
-        self.root.title("Library Database")
-        self.root.geometry("600x400")
+        # self.root = root
+        # self.root.title("Library Database")
+        # self.root.geometry("600x400")
         
-        # Set up main frame for the content display area
-        self.main_frame = tk.Frame(self.root)
-        self.main_frame.pack(fill="both", expand=True)
+        # # Set up main frame for the content display area
+        # self.main_frame = tk.Frame(self.root)
+        # self.main_frame.pack(fill="both", expand=True)
         
         # Menu Buttons
-        self.create_menu_buttons()
+        # self.create_menu_buttons()
         
         # Set default view
         self.display_view_all()
 
     def create_menu_buttons(self):
-        menu_frame = tk.Frame(self.root, bd=2, relief=tk.RAISED)
-        menu_frame.pack(fill="x")
+        # menu_frame = tk.Frame(self.root, bd=2, relief=tk.RAISED)
+        # menu_frame.pack(fill="x")
 
         btn_add = tk.Button(menu_frame, text="Add Book", command=self.display_add_book)
         btn_add.pack(side="left", padx=5, pady=5)

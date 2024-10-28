@@ -20,6 +20,9 @@ class LibraryApp:
         # set up frames - database, input fields, and buttons
         self.create_frames()
         
+        # set up buttons
+        self.create_buttons()
+        
         # run window
         self.main_app_window.mainloop()
         
@@ -64,6 +67,41 @@ class LibraryApp:
         """
         self.database_display_frame = tk.Frame(self.main_app_window, bd=2, relief=tk.RAISED)
         self.database_display_frame.place(x=10, y=250, width=780, height=240)
+        
+    def create_buttons(self):
+        # add, edit, delete, close buttons
+        
+        # add book button
+        # used format from AI code
+        self.add_book_button = tk.Button(self.button_frame, text="Add Book", command=self.call_add_book)
+        self.add_book_button.pack(side="top", fill="x", padx=5, pady=5)
+        
+        # edit book button
+        # used format from AI code
+        self.edit_book_button = tk.Button(self.button_frame, text="Edit Book", command=self.call_edit_book)
+        self.edit_book_button.pack(side="top", fill="x", padx=5, pady=5)
+        
+        # delete book button
+        # used format from AI code
+        self.delete_book_button = tk.Button(self.button_frame, text="Delete Book", command=self.call_delete_book)
+        self.delete_book_button.pack(side="top", fill="x", padx=5, pady=5)
+        
+        
+#---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
+# Call to: library_database.py
+# Add, Edit, Delete
+
+def call_add_book():
+    library_database.add_book()
+    
+def call_edit_book():
+    library_database.edit_book()
+    
+def call_delete_book():
+    library_database.delete_book()
+    
+
+    
 
 
 # initialize tkinter and run the app
