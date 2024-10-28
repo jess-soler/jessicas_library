@@ -23,6 +23,11 @@ class LibraryApp:
         # set up buttons
         self.create_buttons()
         
+        # set up input fields
+        self.create_input_fields()
+        
+        # create a treeview to display the database
+        
         # run window
         self.main_app_window.mainloop()
         
@@ -91,6 +96,37 @@ class LibraryApp:
         self.close_app_button = tk.Button(self.button_frame, text="Close App", command=self.close_app)
         self.close_app_button.pack(side="top", fill="x", padx=5, pady=5)
         
+    def create_input_fields(self):
+        # title, author, genre, rating, pub_date
+        # AI Code
+        
+        # Title input field
+        tk.Label(self.input_frame, text="Title:").grid(row=0, column=0, padx=5, pady=5)
+        self.title_entry = tk.Entry(self.input_frame)
+        self.title_entry.grid(row=0, column=1, padx=5, pady=5)
+
+        # Author input field
+        tk.Label(self.input_frame, text="Author:").grid(row=1, column=0, padx=5, pady=5)
+        self.author_entry = tk.Entry(self.input_frame)
+        self.author_entry.grid(row=1, column=1, padx=5, pady=5)
+
+        # Genre input field
+        tk.Label(self.input_frame, text="Genre:").grid(row=2, column=0, padx=5, pady=5)
+        self.genre_entry = tk.Entry(self.input_frame)
+        self.genre_entry.grid(row=2, column=1, padx=5, pady=5)
+
+        # Rating input field
+        tk.Label(self.input_frame, text="Rating (1-5):").grid(row=3, column=0, padx=5, pady=5)
+        self.rating_entry = tk.Entry(self.input_frame)
+        self.rating_entry.grid(row=3, column=1, padx=5, pady=5)
+
+        # Publication Date input field
+        tk.Label(self.input_frame, text="Publication Date:").grid(row=4, column=0, padx=5, pady=5)
+        self.pub_date_entry = tk.Entry(self.input_frame)
+        self.pub_date_entry.grid(row=4, column=1, padx=5, pady=5)
+        
+        
+
         
 #---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
 # Call to: library_database.py
