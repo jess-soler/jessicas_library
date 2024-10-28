@@ -106,11 +106,11 @@ def find_book():
         # create a cursor object to interact with the database
         cursor = connection.cursor()
         
-        book = int(input("Enter the book ID: "))
+        bk_id = int(input("Enter the book ID: "))
         
         # a list of tuples
         # each tuple is a record/row in the database
-        record = cursor.execute(FETCH_RECORD, (book,)).fetchone()
+        book = cursor.execute(FETCH_RECORD, (bk_id,)).fetchone()
         
         if book:
             # print each item in the tuple using the [] bracket operator

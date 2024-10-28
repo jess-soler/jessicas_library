@@ -60,7 +60,8 @@ def menu():
             library_database.print_books()
             
             library_database.find_book()
-            
+        
+        # (4) Delete book
         elif user_input == '4':
             # display all books
             library_database.print_books()
@@ -70,11 +71,17 @@ def menu():
             library_database.delete_book(book)
             
             library_database.print_books()
-            
+        
+        # (5) Exit   
         elif user_input == '5':
+            print("Goodbye!")
             break
         
         else:
             print("Invalid input. Please try again.")
             
+
+
+
+
 main()
