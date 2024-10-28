@@ -73,9 +73,9 @@ def search_books(keyword):
         logging.error(f"Error searching for books: {e}")
         return []
 
-def initialize_database():
-    """Ensures the database and tables are created before use."""
-    try:
-        create_table()
-    except sqlite3.Error as e:
-        logging.error(f"Error initializing database: {e}")
+# def initialize_database():
+#     """Ensures the database and tables are created before use."""
+#     try:
+#         create_table()
+#     except sqlite3.Error as e:
+#         logging.error(f"Error initializing database: {e}")

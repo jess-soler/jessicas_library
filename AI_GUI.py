@@ -2,8 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 import AI_LIBRARY  # Import your AI_LIBRARY file with functions defined
 
-# Initialize database
-AI_LIBRARY.initialize_database()
+# # Initialize database
+# AI_LIBRARY.initialize_database()
 
 # Main App Class
 class LibraryApp:
