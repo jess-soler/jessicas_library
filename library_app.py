@@ -42,7 +42,16 @@ def menu():
             )
         
         elif user_input == '2':
-            library_database.display_books()
+            books = library_database.display_books()
+            
+            # iterate through the list of tuples returned
+            # from the database query
+            for book in books:
+                # print each item in the tuple using the [] bracket operator
+                # to retrieve each itme in the tuple
+                record = f"ID:({book[0]}) {book[1]} "
+                record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
+                print(record)
             
         elif user_input == '3':
             library_database.find_book()

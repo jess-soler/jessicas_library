@@ -35,6 +35,8 @@ INSERT_RECORD = """
     ) VALUES (?, ?, ?, ?, ?);
 """
 
+FETCH_ALL_RECORDS = "SELECT * FROM tbl_book;"
+
 def create_table():
     # connect to database, automatically manages resources like files and databases
     # ensures resources are cleaned up, like closing a database connection,
@@ -71,7 +73,14 @@ def user_input():
 
 
 def display_books():
-    pass
+    with sqlite3.connect(DATABASE) as connection:
+        cursor = connection.cursor()
+        
+        # a list of tuples
+        # each tuple is a record/row in the database
+        records = cursor.execute(FETCH_ALL_RECORDS).fetchall()
+        
+        return records
 
 
 def find_book():
