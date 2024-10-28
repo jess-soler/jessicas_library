@@ -27,10 +27,10 @@ def menu():
         
         if user_input == '1':
             # get data from user
-            bk_title = input("Enter the book title: "), 
-            bk_author = input("Enter the author: "), 
-            bk_genre = input("Enter the genre: "), 
-            bk_rating = input("Enter rating (1-5): "), 
+            bk_title = input("Enter the book title: ")
+            bk_author = input("Enter the author: ")
+            bk_genre = input("Enter the genre: ")
+            bk_rating = input("Enter rating (1-5): ")
             bk_pub_date = input("Enter publication date: ")
         
             library_database.add_book(
