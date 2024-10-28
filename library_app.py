@@ -26,7 +26,20 @@ def menu():
         user_input = input(MENU_PROMPT)
         
         if user_input == '1':
-            library_database.add_book()
+            # get data from user
+            bk_title = input("Enter the book title: "), 
+            bk_author = input("Enter the author: "), 
+            bk_genre = input("Enter the genre: "), 
+            bk_rating = input("Enter rating (1-5): "), 
+            bk_pub_date = input("Enter publication date: ")
+        
+            library_database.add_book(
+                bk_title,
+                bk_author,
+                bk_genre,
+                bk_rating,
+                bk_pub_date
+            )
         
         elif user_input == '2':
             library_database.display_books()

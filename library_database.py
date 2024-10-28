@@ -17,12 +17,22 @@ DATABASE = 'library.db'
 CREATE_TABLE = """
     CREATE TABLE IF NOT EXISTS tbl_book (
         bk_id INTEGER PRIMARY KEY,
-        ath_id INTEGER, 
         bk_title TEXT,
+        bk_author TEXT, 
         bk_genre TEXT,
         bk_rating INTEGER,
         bk_pub_date TEXT
     );
+"""
+
+INSERT_RECORD = """
+    INSERT INTO tbl_book (
+        bk_title,
+        bk_author,
+        bk_genre,
+        bk_rating,
+        bk_pub_date
+    ) VALUES (?, ?, ?, ?, ?);
 """
 
 def create_table():
@@ -39,8 +49,21 @@ def create_table():
         cursor.execute(CREATE_TABLE)
         
 
-def add_book():
-    pass
+def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
+    with sqlite3.connect(DATABASE) as connection:
+        # create a cursor object to interact with the database
+        cursor = connection.cursor()
+        
+        # execute the SQL script against the database
+        cursor.execute(
+            INSERT_RECORD,
+            (bk_title,
+             bk_author,
+             bk_genre,
+             bk_rating,
+             bk_pub_date)
+        )
+    
 
         
 def user_input():
