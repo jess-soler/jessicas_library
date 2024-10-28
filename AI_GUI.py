@@ -42,58 +42,58 @@ import AI_LIBRARY  # Import your AI_LIBRARY file with functions defined
     #     for widget in self.main_frame.winfo_children():
     #         widget.destroy()
 
-    def display_add_book(self):
-        self.clear_main_frame()
+    # def display_add_book(self):
+    #     self.clear_main_frame()
         
-        tk.Label(self.main_frame, text="Add a New Book", font=("Helvetica", 16)).pack(pady=10)
+    #     tk.Label(self.main_frame, text="Add a New Book", font=("Helvetica", 16)).pack(pady=10)
         
-        # Entry fields
-        tk.Label(self.main_frame, text="Title:").pack(anchor="w")
-        self.title_entry = tk.Entry(self.main_frame)
-        self.title_entry.pack(fill="x", padx=5, pady=2)
+    #     # Entry fields
+    #     tk.Label(self.main_frame, text="Title:").pack(anchor="w")
+    #     self.title_entry = tk.Entry(self.main_frame)
+    #     self.title_entry.pack(fill="x", padx=5, pady=2)
         
-        tk.Label(self.main_frame, text="Author:").pack(anchor="w")
-        self.author_entry = tk.Entry(self.main_frame)
-        self.author_entry.pack(fill="x", padx=5, pady=2)
+    #     tk.Label(self.main_frame, text="Author:").pack(anchor="w")
+    #     self.author_entry = tk.Entry(self.main_frame)
+    #     self.author_entry.pack(fill="x", padx=5, pady=2)
         
-        tk.Label(self.main_frame, text="Genre:").pack(anchor="w")
-        self.genre_entry = tk.Entry(self.main_frame)
-        self.genre_entry.pack(fill="x", padx=5, pady=2)
+    #     tk.Label(self.main_frame, text="Genre:").pack(anchor="w")
+    #     self.genre_entry = tk.Entry(self.main_frame)
+    #     self.genre_entry.pack(fill="x", padx=5, pady=2)
         
-        tk.Label(self.main_frame, text="Rating (1-5):").pack(anchor="w")
-        self.rating_entry = tk.Entry(self.main_frame)
-        self.rating_entry.pack(fill="x", padx=5, pady=2)
+    #     tk.Label(self.main_frame, text="Rating (1-5):").pack(anchor="w")
+    #     self.rating_entry = tk.Entry(self.main_frame)
+    #     self.rating_entry.pack(fill="x", padx=5, pady=2)
         
-        tk.Label(self.main_frame, text="Publication Date (YYYY-MM-DD):").pack(anchor="w")
-        self.pub_date_entry = tk.Entry(self.main_frame)
-        self.pub_date_entry.pack(fill="x", padx=5, pady=2)
+    #     tk.Label(self.main_frame, text="Publication Date (YYYY-MM-DD):").pack(anchor="w")
+    #     self.pub_date_entry = tk.Entry(self.main_frame)
+    #     self.pub_date_entry.pack(fill="x", padx=5, pady=2)
         
-        # Submit button
-        submit_btn = tk.Button(self.main_frame, text="Add Book", command=self.add_book)
-        submit_btn.pack(pady=10)
+    #     # Submit button
+    #     submit_btn = tk.Button(self.main_frame, text="Add Book", command=self.add_book)
+    #     submit_btn.pack(pady=10)
         
-    def add_book(self):
-        title = self.title_entry.get()
-        author = self.author_entry.get()
-        genre = self.genre_entry.get()
-        rating = self.rating_entry.get()
-        pub_date = self.pub_date_entry.get()
+    # def add_book(self):
+    #     title = self.title_entry.get()
+    #     author = self.author_entry.get()
+    #     genre = self.genre_entry.get()
+    #     rating = self.rating_entry.get()
+    #     pub_date = self.pub_date_entry.get()
         
-        if not (title and author and genre and rating.isdigit() and pub_date):
-            messagebox.showerror("Input Error", "Please fill out all fields correctly.")
-            return
+    #     if not (title and author and genre and rating.isdigit() and pub_date):
+    #         messagebox.showerror("Input Error", "Please fill out all fields correctly.")
+    #         return
         
-        if not (1 <= int(rating) <= 5):
-            messagebox.showerror("Input Error", "Rating must be between 1 and 5.")
-            return
+    #     if not (1 <= int(rating) <= 5):
+    #         messagebox.showerror("Input Error", "Rating must be between 1 and 5.")
+    #         return
         
-        success = AI_LIBRARY.add_book(title, author, genre, int(rating), pub_date)
+    #     success = AI_LIBRARY.add_book(title, author, genre, int(rating), pub_date)
         
-        if success:
-            messagebox.showinfo("Success", "Book added successfully.")
-            self.display_view_all()
-        else:
-            messagebox.showerror("Error", "Failed to add book.")
+    #     if success:
+    #         messagebox.showinfo("Success", "Book added successfully.")
+    #         self.display_view_all()
+    #     else:
+    #         messagebox.showerror("Error", "Failed to add book.")
 
     def display_view_all(self):
         self.clear_main_frame()

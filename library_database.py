@@ -74,6 +74,9 @@ def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
              bk_rating,
              bk_pub_date)
         )
+        
+        
+        
     
 
 def fetch_books():

@@ -29,6 +29,9 @@ class LibraryApp:
         # set up database display
         self.create_database_display()
         
+        # update the treeview
+        self.update_treeview()
+        
         # run window
         self.main_app_window.mainloop()
         
@@ -161,15 +164,33 @@ class LibraryApp:
         
         self.tree.pack(padx=10, pady=10, fill="both", expand=True)
 
+    def update_treeview(self):
+        # AI Code
         
+        # clear the treeview
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+            
+        # fetch updated records from the database
+        books = library_database.fetch_books()
+        
+        # insert the updated records into the treeview
+        for book in books:
+            self.tree.insert("", "end", text=book[0], values=(book[1], book[2], book[3], book[4], book[5]))
         
 #---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
 # Call to: library_database.py
 # Add, Edit, Save, Delete
 
-    def call_add_book():
-        library_database.add_book()
+    def call_add_book(self):
+        title = self.title_entry.get()
+        author = self.author_entry.get()
+        genre = self.genre_entry.get()
+        rating = self.rating_entry.get()
+        pub_date = self.pub_date_entry.get()
         
+        library_database.add_book(title, author, genre, rating, pub_date)
+        self.update_treeview()
     def call_edit_book():
         library_database.edit_book()
         
