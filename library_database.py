@@ -41,6 +41,8 @@ FETCH_RECORD = "SELECT * FROM tbl_book WHERE bk_id = ?;"
 
 DELETE_RECORD = "DELETE FROM tbl_book WHERE bk_id = ?;"
 
+UPDATE_RECORD = "UPDATE tbl_book SET bk_title = ?, bk_author = ?, bk_genre = ?, bk_rating = ?, bk_pub_date = ? WHERE bk_id = ?;"
+
 
 
 
@@ -136,15 +138,13 @@ def delete_book(bk_id: int):
         
         
 # GUI implemented
-def edit_book(bk_id: int, bk_title: str, bk_author: str, bk_genre: str, bk_rating: int, bk_pub_date: str):
+def edit_book(bk_title: str, bk_author: str, bk_genre: str, bk_rating: int, bk_pub_date: str):
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database
         cursor = connection.cursor()
         
-        # delete the selected record
-        cursor.execute(DELETE_RECORD, (bk_id, ))
-        
-
+        # update the selected record
+        cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
 
         # add book to database
         add_book(
