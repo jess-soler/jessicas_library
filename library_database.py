@@ -38,3 +38,22 @@ def create_table():
         # execute the SQL statement
         cursor.execute(CREATE_TABLE)
         
+
+def add_book():
+    pass
+
+        
+def user_input():
+    pass
+
+
+def display_books():
+    pass
+
+
+def find_book():
+    pass
+
+
+def delete_book():
+    pass
