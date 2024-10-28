@@ -101,17 +101,33 @@ def print_books():
                 print(record)
 
 
-def find_book(bk_id: int):
+def find_book():
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database
         cursor = connection.cursor()
         
+        book = int(input("Enter the book ID: "))
+        
         # a list of tuples
         # each tuple is a record/row in the database
-        record = cursor.execute(FETCH_RECORD, (bk_id,)).fetchone()
+        record = cursor.execute(FETCH_RECORD, (book,)).fetchone()
         
-        return record
+        if book:
+            # print each item in the tuple using the [] bracket operator
+            # to retrieve each itme in the tuple
+            record = f"ID:({book[0]}) {book[1]} "
+            record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
+            print(record)
+        else:
+                print("Book not found.")
+        
+        # return record
     
+    
+    
+
+            
+
 
 
 def delete_book(bk_id: int):

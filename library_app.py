@@ -53,23 +53,13 @@ def menu():
             
             # display all books
             library_database.print_books()
-            
+        
+        # (3) Find book by ID    
         elif user_input == '3':
             # display all books
             library_database.print_books()
             
-            bk_id = int(input("Enter the book ID: "))
-            
-            book = library_database.find_book(bk_id)
-            
-            if book:
-                # print each item in the tuple using the [] bracket operator
-                # to retrieve each itme in the tuple
-                record = f"ID:({book[0]}) {book[1]} "
-                record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
-                print(record)
-            else:
-                print("Book not found.")
+            library_database.find_book()
             
         elif user_input == '4':
             # display all books
