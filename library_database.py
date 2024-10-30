@@ -48,7 +48,7 @@ DELETE_RECORD = "DELETE FROM tbl_book WHERE bk_id = ?;"
 
 UPDATE_RECORD = "UPDATE tbl_book SET bk_title = ?, bk_author = ?, bk_genre = ?, bk_rating = ?, bk_pub_date = ? WHERE bk_id = ?;"
 
-
+CLEAR_DATABASE = "DELETE FROM tbl_book;"
 
 
 #---FUNCTIONS--------------------------------------------------------------------FUNCTIONS----#
@@ -141,3 +141,14 @@ def save_book(bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
         cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date, bk_id))
     
     messagebox.showinfo("Book Updated", "Book has been updated.")
+    
+
+def delete_all_books():
+    with sqlite3.connect(DATABASE) as connection:
+        # create a cursor object to interact with the database
+        cursor = connection.cursor()
+        
+        # execute the SQL script against the database
+        cursor.execute(CLEAR_DATABASE)
+    
+    messagebox.showinfo("Books Deleted", "All books have been deleted.")

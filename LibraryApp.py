@@ -113,6 +113,11 @@ class LibraryApp:
         self.close_app_button = tk.Button(self.button_frame, text="Close App", command=self.close_app)
         self.close_app_button.pack(side="top", fill="x", padx=5, pady=7)
         
+        # clear database button
+        # used format from AI code
+        self.clear_database_button = tk.Button(self.button_frame, text="Clear Database", command=library_database.clear_database)
+        self.clear_database_button.pack(side="top", fill="x", padx=5, pady=0)
+        
         
     def create_input_fields(self):
         # title, author, genre, rating, pub_date
