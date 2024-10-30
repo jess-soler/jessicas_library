@@ -66,7 +66,16 @@ def create_table():
         # execute the SQL statement
         cursor.execute(CREATE_TABLE)
         
-
+def get_input():
+        # .get() the text from the entry field
+        title = LibraryApp.title_entry.get()
+        author = LibraryApp.author_entry.get()
+        genre = LibraryApp.genre_entry.get()
+        rating = LibraryApp.rating_entry.get()
+        pub_date = LibraryApp.pub_date_entry.get()
+        
+        return title, author, genre, rating, pub_date
+    
 def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database

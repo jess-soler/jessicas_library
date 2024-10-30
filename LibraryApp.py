@@ -10,7 +10,7 @@ from tkinter import ttk
 # import the library_database module
 import library_database
 
-# main app class
+#----Class----------------------------------------------------------------------------------------------------#
 class LibraryApp:
     def __init__(self, main_app_window):
         self.main_app_window = main_app_window
@@ -32,7 +32,9 @@ class LibraryApp:
         # run window
         self.main_app_window.mainloop()
       
-    #---GUI FUNCTIONS----------------------------------------------------------------------------------------------------#  
+      
+      
+#---GUI FUNCTIONS----------------------------------------------------------------------------------------------------#  
     def create_frames(self):
         """
             upper left frame = input fields
@@ -111,15 +113,6 @@ class LibraryApp:
         self.close_app_button = tk.Button(self.button_frame, text="Close App", command=self.close_app)
         self.close_app_button.pack(side="top", fill="x", padx=5, pady=7)
         
-
-    def clear_input_fields(self):
-        # AI Code
-        self.title_entry.delete(0, tk.END)
-        self.author_entry.delete(0, tk.END)
-        self.genre_entry.delete(0, tk.END)
-        self.rating_entry.delete(0, tk.END)
-        self.pub_date_entry.delete(0, tk.END)
-        
         
     def create_input_fields(self):
         # title, author, genre, rating, pub_date
@@ -149,7 +142,16 @@ class LibraryApp:
         tk.Label(self.input_frame, text="Publication Date (YYYY-MM-DD):").pack(anchor="w")
         self.pub_date_entry = tk.Entry(self.input_frame)
         self.pub_date_entry.pack(fill="x", padx=5, pady=2)
-        
+    
+    
+    def clear_input_fields(self):
+        # AI Code
+        self.title_entry.delete(0, tk.END)
+        self.author_entry.delete(0, tk.END)
+        self.genre_entry.delete(0, tk.END)
+        self.rating_entry.delete(0, tk.END)
+        self.pub_date_entry.delete(0, tk.END)
+     
          
     def create_database_display(self):
         # create a treeview to display the database
@@ -191,17 +193,12 @@ class LibraryApp:
         
 #---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
 # Call to: library_database.py
-# Add, Edit, Save, Delete
+# Add, Edit, Save, Delete, Close
 
     def call_add_book(self):
-        
-        # .get() the text from the entry field
-        title = self.title_entry.get()
-        author = self.author_entry.get()
-        genre = self.genre_entry.get()
-        rating = self.rating_entry.get()
-        pub_date = self.pub_date_entry.get()
-        
+        # .get() function to get the text from the entry field
+        title, author, genre, rating, pub_date = library_database.get_input()
+
         library_database.add_book(title, author, genre, rating, pub_date)
         self.update_treeview()
         
@@ -228,6 +225,7 @@ class LibraryApp:
     def call_save_book(self):
         library_database.save_book()
         
+        
     def close_app(self):
         self.main_app_window.quit()
     
@@ -237,3 +235,4 @@ class LibraryApp:
 if __name__ == "__main__":
     root = tk.Tk()
     app = LibraryApp(root)
+#MOVE DATABASE INITIALIZATION HERE???
