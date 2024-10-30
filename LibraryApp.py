@@ -184,7 +184,7 @@ class LibraryApp:
         
         # insert the updated records into the treeview
         for book in books:
-            self.tree.insert("", "end", values=book))
+            self.tree.insert("", "end", values=book)
         
 #---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
 # Call to: library_database.py
