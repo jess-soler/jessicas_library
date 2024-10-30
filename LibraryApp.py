@@ -195,11 +195,26 @@ class LibraryApp:
 # Call to: library_database.py
 # Add, Edit, Save, Delete, Close
 
-    def call_add_book(self):
+    def get_entry(self):
         # .get() function to get the text from the entry field
-        title, author, genre, rating, pub_date = library_database.get_input()
+        title = self.title_entry.get()
+        author = self.author_entry.get()
+        genre = self.genre_entry.get()
+        rating = self.rating_entry.get()
+        pub_date = self.pub_date_entry.get()
+        
+        return title, author, genre, rating, pub_date
 
+
+    def call_add_book(self):
+        
+        # get the book details from the input fields
+        title, author, genre, rating, pub_date = self.get_entry()
+
+        # call database function to add a book
         library_database.add_book(title, author, genre, rating, pub_date)
+        
+        # update the treeview after adding a book
         self.update_treeview()
         
         # clear fields after adding a book
@@ -207,7 +222,17 @@ class LibraryApp:
         
         
     def call_edit_book(self):
-        library_database.edit_book()
+        # select item from the treeview
+        selected_item = self.tree.selection()
+        
+        if not selected_item:
+            messagebox.showwarning("Edit Book", "Please select a book from the database.")
+            return
+        
+        # populate into input fields
+        book_id = LibraryApp.tree.item(selected_item)["values"][0]
+        
+        library_database.edit_book(book_id)
         
         
     def call_delete_book(self):

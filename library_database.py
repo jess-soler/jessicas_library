@@ -52,7 +52,6 @@ UPDATE_RECORD = "UPDATE tbl_book SET bk_title = ?, bk_author = ?, bk_genre = ?, 
 
 
 #---FUNCTIONS--------------------------------------------------------------------FUNCTIONS----#
-
 def create_table():
     # connect to database, automatically manages resources like files and databases
     # ensures resources are cleaned up, like closing a database connection,
@@ -65,16 +64,7 @@ def create_table():
         
         # execute the SQL statement
         cursor.execute(CREATE_TABLE)
-        
-def get_input():
-        # .get() the text from the entry field
-        title = LibraryApp.title_entry.get()
-        author = LibraryApp.author_entry.get()
-        genre = LibraryApp.genre_entry.get()
-        rating = LibraryApp.rating_entry.get()
-        pub_date = LibraryApp.pub_date_entry.get()
-        
-        return title, author, genre, rating, pub_date
+
     
 def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
     with sqlite3.connect(DATABASE) as connection:
@@ -89,7 +79,9 @@ def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
              bk_genre,
              bk_rating,
              bk_pub_date)
-        )  
+        )
+        
+        messagebox.showinfo("Book Added", "Book has been added.")
         
 
 def fetch_books():
@@ -115,36 +107,18 @@ def delete_book(bk_id: int):
     messagebox.showinfo("Book Deleted", "Book has been deleted.")
         
         
-# GUI implemented
-def edit_book():
+def edit_book(book_id: int):    
     with sqlite3.connect(DATABASE) as connection:
+        
         # create a cursor object to interact with the database
         cursor = connection.cursor()
         
-        # AI Code
-        selected_item = LibraryApp.tree.selection()
-        if not selected_item:
-            messagebox.showwarning("Edit Book", "Please select a book from the database.")
-            return
-        
-        # AI Code
-        # get the book details from the selected item
-        book_details = LibraryApp.tree.item(selected_item)["values"]
-        
-        # AI Code
-        # populate input fields with current details
-        LibraryApp.title_entry.delete(0, tk.END)
-        LibraryApp.title_entry.insert(0, book_details[1])
-        LibraryApp.author_entry.delete(0, tk.END)
-        LibraryApp.author_entry.insert(0, book_details[2])
-        LibraryApp.genre_entry.delete(0, tk.END)
-        LibraryApp.genre_entry.insert(0, book_details[3])
-        LibraryApp.rating_entry.delete(0, tk.END)
-        LibraryApp.rating_entry.insert(0, book_details[4])
-        LibraryApp.pub_date_entry.delete(0, tk.END)
-        LibraryApp.pub_date_entry.insert(0, book_details[5])
+        # fetch the selected record
+        cursor.execute(FETCH_RECORD, (book_id,)).fetchone()
+    
+    # user clicks save
 
-        
+   
 def save_book():
     with sqlite3.connect(DATABASE) as connection:
     
@@ -167,3 +141,20 @@ def save_book():
     messagebox.showinfo("Book Updated", "Book has been updated.")
 
     
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+
+        
+        # # unpack the tuple
+        # bk_title, bk_author, bk_genre, bk_rating, bk_pub_date = book_details
+        
+        # # update record
+        # cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
