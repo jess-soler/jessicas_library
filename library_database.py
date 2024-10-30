@@ -143,12 +143,12 @@ def save_book(bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
     messagebox.showinfo("Book Updated", "Book has been updated.")
     
 
-def clear_database():
-    with sqlite3.connect(DATABASE) as connection:
-        # create a cursor object to interact with the database
-        cursor = connection.cursor()
+# def clear_database():
+#     with sqlite3.connect(DATABASE) as connection:
+#         # create a cursor object to interact with the database
+#         cursor = connection.cursor()
         
-        # execute the SQL script against the database
-        cursor.execute(CLEAR_DATABASE)
+#         # execute the SQL script against the database
+#         cursor.execute(CLEAR_DATABASE)
     
-    messagebox.showinfo("Books Deleted", "All books have been deleted.")
+#     messagebox.showinfo("Books Deleted", "All books have been deleted.")
