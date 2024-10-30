@@ -172,6 +172,7 @@ class LibraryApp:
 
         self.update_treeview()
 
+
     def update_treeview(self):
         # AI Code
         
@@ -185,6 +186,8 @@ class LibraryApp:
         # insert the updated records into the treeview
         for book in books:
             self.tree.insert("", "end", values=book)
+        
+        
         
 #---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
 # Call to: library_database.py
@@ -217,31 +220,25 @@ class LibraryApp:
         # get the book details from the selected item
         book_details = self.tree.item(selected_item)["values"]
         
-        book_id = book_details[0]
+        # AI Code
+        # populate input fields with current details
+        self.title_entry.delete(0, tk.END)
+        self.title_entry.insert(0, book_details[1])
+        self.author_entry.delete(0, tk.END)
+        self.author_entry.insert(0, book_details[2])
+        self.genre_entry.delete(0, tk.END)
+        self.genre_entry.insert(0, book_details[3])
+        self.rating_entry.delete(0, tk.END)
+        self.rating_entry.insert(0, book_details[4])
+        self.pub_date_entry.delete(0, tk.END)
+        self.pub_date_entry.insert(0, book_details[5])
         
-        # # AI Code
-        # # populate input fields with current details
-        # # self.title_entry.delete(0, tk.END)
-        # self.title_entry.insert(0, book_details[1])
-        # # self.author_entry.delete(0, tk.END)
-        # self.author_entry.insert(0, book_details[2])
-        # # self.genre_entry.delete(0, tk.END)
-        # self.genre_entry.insert(0, book_details[3])
-        # # self.rating_entry.delete(0, tk.END)
-        # self.rating_entry.insert(0, book_details[4])
-        # # self.pub_date_entry.delete(0, tk.END)
-        # self.pub_date_entry.insert(0, book_details[5])
+        library_database.edit_book()
+        self.update_treeview()
+        self.clear_input_fields()
+        messagebox.showinfo("Book Updated", "Book has been updated.")
         
-        # .get() the text from the entry field
-        title = self.title_entry.get()
-        author = self.author_entry.get()
-        genre = self.genre_entry.get()
-        rating = self.rating_entry.get()
-        pub_date = self.pub_date_entry.get()
-
-        library_database.edit_book(title, author, genre, rating, pub_date)
-        
-    def call_delete_book():
+    def call_delete_book(self):
         selected_item = self.tree.selection()
         
         if not selected_item:
@@ -252,11 +249,11 @@ class LibraryApp:
         library_database.delete_book(book_id)
         self.update_treeview()
         
-    def call_save_book():
+    def call_save_book(self):
         library_database.save_book()
         
-    def close_app():
-        library_database.close_app()
+    def close_app(self):
+        self.main_app_window.quit()
     
 
 

@@ -8,6 +8,7 @@
 # Import sqlite3 database library
 import sqlite3
 from tkinter import messagebox
+import LibraryApp as LibraryApp
 
 DATABASE = 'library.db'
 
@@ -63,7 +64,6 @@ def create_table():
         cursor.execute(CREATE_TABLE)
         
 
-# GUI implemented
 def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database
@@ -77,11 +77,8 @@ def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
              bk_genre,
              bk_rating,
              bk_pub_date)
-        )
+        )  
         
-        
-        
-    
 
 def fetch_books():
     with sqlite3.connect(DATABASE) as connection:
@@ -93,40 +90,6 @@ def fetch_books():
         records = cursor.execute(FETCH_ALL_RECORDS).fetchall()
         
         return records
-        
-# def print_books():
-#             # display all books
-#             books = fetch_books()
-            
-#             # iterate through the list of tuples returned
-#             # from the database query
-#             for book in books:
-#                 # print each item in the tuple using the [] bracket operator
-#                 # to retrieve each itme in the tuple
-#                 record = f"ID:({book[0]}) {book[1]} "
-#                 record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
-#                 print(record)
-
-
-# def find_book():
-#     with sqlite3.connect(DATABASE) as connection:
-#         # create a cursor object to interact with the database
-#         cursor = connection.cursor()
-        
-#         bk_id = int(input("Enter the book ID: "))
-        
-#         # a list of tuples
-#         # each tuple is a record/row in the database
-#         book = cursor.execute(FETCH_RECORD, (bk_id,)).fetchone()
-        
-#         if book:
-#             # print each item in the tuple using the [] bracket operator
-#             # to retrieve each itme in the tuple
-#             record = f"ID:({book[0]}) {book[1]} "
-#             record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
-#             print(record)
-#         else:
-#                 print("Book not found.")
 
 
 def delete_book(bk_id: int):
@@ -141,19 +104,21 @@ def delete_book(bk_id: int):
         
         
 # GUI implemented
-def edit_book(bk_title: str, bk_author: str, bk_genre: str, bk_rating: int, bk_pub_date: str):
+def edit_book():
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database
         cursor = connection.cursor()
         
+        # .get() the text from the entry field
+        bk_title = LibraryApp.title_entry.get()
+        bk_author = LibraryApp.author_entry.get()
+        bk_genre = LibraryApp.genre_entry.get()
+        bk_rating = LibraryApp.rating_entry.get()
+        bk_pub_date = LibraryApp.pub_date_entry.get()
+        
         # update the selected record
         cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
 
-    messagebox.showinfo("Book Updated", "Book has been updated.")
         
     def save_book():
         pass
-        
-    def close_app():
-        print("Goodbye!")
-        exit()
