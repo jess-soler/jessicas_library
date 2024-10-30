@@ -29,12 +29,10 @@ class LibraryApp:
         # set up database display
         self.create_database_display()
         
-        # update the treeview
-        self.update_treeview()
-        
         # run window
         self.main_app_window.mainloop()
-        
+      
+    #---GUI FUNCTIONS----------------------------------------------------------------------------------------------------#  
     def create_frames(self):
         """
             upper left frame = input fields
@@ -82,7 +80,7 @@ class LibraryApp:
         
         
     def create_buttons(self):
-        # add, edit, delete, close buttons
+        # add, edit, delete, save, clear input fields, close buttons
         
         # add book button
         # used format from AI code
@@ -168,6 +166,7 @@ class LibraryApp:
         self.tree.pack(fill="both", expand=True)        
         
         # insert data into treeview
+        self.update_treeview()
         
         # add a scrollbar
         scrollbar = ttk.Scrollbar(self.database_display_frame, orient="vertical", command=self.tree.yview)
@@ -221,24 +220,24 @@ class LibraryApp:
         # AI Code
         # populate input fields with current details
         self.title_entry.delete(0, tk.END)
-        self.title_entry.insert(0, book_details[0])
+        self.title_entry.insert(0, book_details[1])
         self.author_entry.delete(0, tk.END)
-        self.author_entry.insert(0, book_details[1])
+        self.author_entry.insert(0, book_details[2])
         self.genre_entry.delete(0, tk.END)
-        self.genre_entry.insert(0, book_details[2])
+        self.genre_entry.insert(0, book_details[3])
         self.rating_entry.delete(0, tk.END)
-        self.rating_entry.insert(0, book_details[3])
+        self.rating_entry.insert(0, book_details[4])
         self.pub_date_entry.delete(0, tk.END)
-        self.pub_date_entry.insert(0, book_details[4])
+        self.pub_date_entry.insert(0, book_details[5])
         
-        # .get() the text from the entry field
-        title = self.title_entry.get()
-        author = self.author_entry.get()
-        genre = self.genre_entry.get()
-        rating = self.rating_entry.get()
-        pub_date = self.pub_date_entry.get()
+        # # .get() the text from the entry field
+        # title = self.title_entry.get()
+        # author = self.author_entry.get()
+        # genre = self.genre_entry.get()
+        # rating = self.rating_entry.get()
+        # pub_date = self.pub_date_entry.get()
 
-        library_database.edit_book(title, author, genre, rating, pub_date)
+        # library_database.edit_book(title, author, genre, rating, pub_date)
         
     def call_delete_book():
         library_database.delete_book()

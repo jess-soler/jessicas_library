@@ -7,6 +7,7 @@
 
 # Import sqlite3 database library
 import sqlite3
+from tkinter import messagebox
 
 DATABASE = 'library.db'
 
@@ -16,7 +17,7 @@ DATABASE = 'library.db'
 
 CREATE_TABLE = """
     CREATE TABLE IF NOT EXISTS tbl_book (
-        bk_id INTEGER PRIMARY KEY,
+        bk_id INTEGER PRIMARY KEY AUTOINCREMENT,
         bk_title TEXT,
         bk_author TEXT, 
         bk_genre TEXT,
@@ -93,39 +94,39 @@ def fetch_books():
         
         return records
         
-def print_books():
-            # display all books
-            books = fetch_books()
+# def print_books():
+#             # display all books
+#             books = fetch_books()
             
-            # iterate through the list of tuples returned
-            # from the database query
-            for book in books:
-                # print each item in the tuple using the [] bracket operator
-                # to retrieve each itme in the tuple
-                record = f"ID:({book[0]}) {book[1]} "
-                record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
-                print(record)
+#             # iterate through the list of tuples returned
+#             # from the database query
+#             for book in books:
+#                 # print each item in the tuple using the [] bracket operator
+#                 # to retrieve each itme in the tuple
+#                 record = f"ID:({book[0]}) {book[1]} "
+#                 record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
+#                 print(record)
 
 
-def find_book():
-    with sqlite3.connect(DATABASE) as connection:
-        # create a cursor object to interact with the database
-        cursor = connection.cursor()
+# def find_book():
+#     with sqlite3.connect(DATABASE) as connection:
+#         # create a cursor object to interact with the database
+#         cursor = connection.cursor()
         
-        bk_id = int(input("Enter the book ID: "))
+#         bk_id = int(input("Enter the book ID: "))
         
-        # a list of tuples
-        # each tuple is a record/row in the database
-        book = cursor.execute(FETCH_RECORD, (bk_id,)).fetchone()
+#         # a list of tuples
+#         # each tuple is a record/row in the database
+#         book = cursor.execute(FETCH_RECORD, (bk_id,)).fetchone()
         
-        if book:
-            # print each item in the tuple using the [] bracket operator
-            # to retrieve each itme in the tuple
-            record = f"ID:({book[0]}) {book[1]} "
-            record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
-            print(record)
-        else:
-                print("Book not found.")
+#         if book:
+#             # print each item in the tuple using the [] bracket operator
+#             # to retrieve each itme in the tuple
+#             record = f"ID:({book[0]}) {book[1]} "
+#             record += f"{book[2]} {book[3]} {book[4]} {book[5]}"
+#             print(record)
+#         else:
+#                 print("Book not found.")
 
 
 def delete_book(bk_id: int):
@@ -133,8 +134,10 @@ def delete_book(bk_id: int):
         # create a cursor object to interact with the database
         cursor = connection.cursor()
         
-        # delete the selected record
-        cursor.execute(DELETE_RECORD, (bk_id, ))
+        # need to pass the book ID as a tuple
+        cursor.execute(DELETE_RECORD, (bk_id,))
+    
+    messagebox.showinfo("Book Deleted", "Book has been deleted.")
         
         
 # GUI implemented
@@ -146,14 +149,7 @@ def edit_book(bk_title: str, bk_author: str, bk_genre: str, bk_rating: int, bk_p
         # update the selected record
         cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
 
-        # add book to database
-        add_book(
-            bk_title,
-            bk_author,
-            bk_genre,
-            bk_rating,
-            bk_pub_date
-        )
+    messagebox.showinfo("Book Updated", "Book has been updated.")
         
     def save_book():
         pass
