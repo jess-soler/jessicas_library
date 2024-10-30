@@ -144,7 +144,7 @@ class LibraryApp:
         self.rating_entry.pack(fill="x", padx=5, pady=2)
 
         # Publication Date input field
-        tk.Label(self.input_frame, text="Publication Date (YYYY-MM-DD):").pack(anchor="w")
+        tk.Label(self.input_frame, text="Publication Date (YYYY):").pack(anchor="w")
         self.pub_date_entry = tk.Entry(self.input_frame)
         self.pub_date_entry.pack(fill="x", padx=5, pady=2)
     
