@@ -138,6 +138,6 @@ def save_book(bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
         cursor = connection.cursor()
     
         # update the selected record
-        cursor.execute(UPDATE_RECORD, (bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
+        cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date, bk_id))
     
     messagebox.showinfo("Book Updated", "Book has been updated.")
