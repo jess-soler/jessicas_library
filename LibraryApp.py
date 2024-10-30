@@ -229,6 +229,7 @@ class LibraryApp:
             messagebox.showwarning("Edit Book", "Please select a book from the database.")
             return
         
+        # save the tuple as book_details
         book_details = self.tree.item(selected_item)["values"]
         
         # AI Code
@@ -253,7 +254,18 @@ class LibraryApp:
         
         
     def call_save_book(self):
-        library_database.save_book()
+        
+        # .get() the text from the entry field
+        bk_id = self.tree.item(self.tree.selection())["values"][0]
+        bk_title = self.title_entry.get()
+        bk_author = self.author_entry.get()
+        bk_genre = self.genre_entry.get()
+        bk_rating = self.rating_entry.get()
+        bk_pub_date = self.pub_date_entry.get()  
+        library_database.save_book(bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date)
+        
+        self.update_treeview()
+        self.clear_input_fields()
         
         
     def close_app(self):

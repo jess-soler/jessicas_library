@@ -42,7 +42,7 @@ INSERT_RECORD = """
 
 FETCH_ALL_RECORDS = "SELECT * FROM tbl_book;"
 
-FETCH_RECORD = "SELECT * FROM tbl_book WHERE bk_id = ?"
+FETCH_RECORD = "SELECT * FROM tbl_book WHERE bk_id = ?;"
 
 DELETE_RECORD = "DELETE FROM tbl_book WHERE bk_id = ?;"
 
@@ -95,6 +95,7 @@ def fetch_books():
         
         return records
     
+    
 def fetch_book(bk_id: int):
     with sqlite3.connect(DATABASE) as connection:
         # create a cursor object to interact with the database
@@ -105,7 +106,6 @@ def fetch_book(bk_id: int):
         book = cursor.execute(FETCH_RECORD, (bk_id,)).fetchone()
         
         return book
-
 
 
 def delete_book(bk_id: int):
@@ -131,42 +131,13 @@ def edit_book(book_id: int):
     # user clicks save
 
    
-def save_book():
+def save_book(bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
     with sqlite3.connect(DATABASE) as connection:
     
         # create a cursor object to interact with the database
         cursor = connection.cursor()
-        
-        # .get() the text from the entry field
-        bk_title = LibraryApp.title_entry.get()
-        bk_author = LibraryApp.author_entry.get()
-        bk_genre = LibraryApp.genre_entry.get()
-        bk_rating = LibraryApp.rating_entry.get()
-        bk_pub_date = LibraryApp.pub_date_entry.get()  
-        
     
-    # update the selected record
-    cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
+        # update the selected record
+        cursor.execute(UPDATE_RECORD, (bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
     
-    LibraryApp.update_treeview()
-    LibraryApp.clear_input_fields()
     messagebox.showinfo("Book Updated", "Book has been updated.")
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-
-        
-        # # unpack the tuple
-        # bk_title, bk_author, bk_genre, bk_rating, bk_pub_date = book_details
-        
-        # # update record
-        # cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
