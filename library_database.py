@@ -42,7 +42,7 @@ INSERT_RECORD = """
 
 FETCH_ALL_RECORDS = "SELECT * FROM tbl_book;"
 
-FETCH_RECORD = "SELECT * FROM tbl_book WHERE bk_id = ?;"
+FETCH_RECORD = "SELECT * FROM tbl_book WHERE bk_id = ?"
 
 DELETE_RECORD = "DELETE FROM tbl_book WHERE bk_id = ?;"
 
@@ -94,6 +94,18 @@ def fetch_books():
         records = cursor.execute(FETCH_ALL_RECORDS).fetchall()
         
         return records
+    
+def fetch_book(bk_id: int):
+    with sqlite3.connect(DATABASE) as connection:
+        # create a cursor object to interact with the database
+        cursor = connection.cursor()
+        
+        # a list of tuples
+        # each tuple is a record/row in the database
+        book = cursor.execute(FETCH_RECORD, (bk_id,)).fetchone()
+        
+        return book
+
 
 
 def delete_book(bk_id: int):

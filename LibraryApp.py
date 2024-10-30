@@ -230,9 +230,9 @@ class LibraryApp:
             return
         
         # populate into input fields
-        book_id = LibraryApp.tree.item(selected_item)["values"][0]
+        book_id = self.tree.item(selected_item)["values"][0]
+        book = library_database.fetch_book(book_id)
         
-        library_database.edit_book(book_id)
         
         
     def call_delete_book(self):
