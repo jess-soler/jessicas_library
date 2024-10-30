@@ -229,10 +229,15 @@ class LibraryApp:
             messagebox.showwarning("Edit Book", "Please select a book from the database.")
             return
         
-        # populate into input fields
-        book_id = self.tree.item(selected_item)["values"][0]
-        book = library_database.fetch_book(book_id)
+        book_details = self.tree.item(selected_item)["values"]
         
+        # AI Code
+        # populate input fields with current details
+        self.title_entry.insert(0, book_details[1])
+        self.author_entry.insert(0, book_details[2])
+        self.genre_entry.insert(0, book_details[3])
+        self.rating_entry.insert(0, book_details[4])
+        self.pub_date_entry.insert(0, book_details[5])
         
         
     def call_delete_book(self):
