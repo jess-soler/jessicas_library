@@ -217,30 +217,40 @@ class LibraryApp:
         # get the book details from the selected item
         book_details = self.tree.item(selected_item)["values"]
         
-        # AI Code
-        # populate input fields with current details
-        self.title_entry.delete(0, tk.END)
-        self.title_entry.insert(0, book_details[1])
-        self.author_entry.delete(0, tk.END)
-        self.author_entry.insert(0, book_details[2])
-        self.genre_entry.delete(0, tk.END)
-        self.genre_entry.insert(0, book_details[3])
-        self.rating_entry.delete(0, tk.END)
-        self.rating_entry.insert(0, book_details[4])
-        self.pub_date_entry.delete(0, tk.END)
-        self.pub_date_entry.insert(0, book_details[5])
+        book_id = book_details[0]
         
-        # # .get() the text from the entry field
-        # title = self.title_entry.get()
-        # author = self.author_entry.get()
-        # genre = self.genre_entry.get()
-        # rating = self.rating_entry.get()
-        # pub_date = self.pub_date_entry.get()
+        # # AI Code
+        # # populate input fields with current details
+        # # self.title_entry.delete(0, tk.END)
+        # self.title_entry.insert(0, book_details[1])
+        # # self.author_entry.delete(0, tk.END)
+        # self.author_entry.insert(0, book_details[2])
+        # # self.genre_entry.delete(0, tk.END)
+        # self.genre_entry.insert(0, book_details[3])
+        # # self.rating_entry.delete(0, tk.END)
+        # self.rating_entry.insert(0, book_details[4])
+        # # self.pub_date_entry.delete(0, tk.END)
+        # self.pub_date_entry.insert(0, book_details[5])
+        
+        # .get() the text from the entry field
+        title = self.title_entry.get()
+        author = self.author_entry.get()
+        genre = self.genre_entry.get()
+        rating = self.rating_entry.get()
+        pub_date = self.pub_date_entry.get()
 
-        # library_database.edit_book(title, author, genre, rating, pub_date)
+        library_database.edit_book(title, author, genre, rating, pub_date)
         
     def call_delete_book():
-        library_database.delete_book()
+        selected_item = self.tree.selection()
+        
+        if not selected_item:
+            messagebox.showwarning("Delete Book", "Please select a book from the database.")
+            return
+        
+        book_id = self.tree.item(selected_item)["values"][0]
+        library_database.delete_book(book_id)
+        self.update_treeview()
         
     def call_save_book():
         library_database.save_book()

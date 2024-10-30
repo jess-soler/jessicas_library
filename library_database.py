@@ -83,16 +83,16 @@ def add_book(bk_title, bk_author, bk_genre, bk_rating, bk_pub_date):
         
     
 
-def fetch_books():
-    with sqlite3.connect(DATABASE) as connection:
-        # create a cursor object to interact with the database
-        cursor = connection.cursor()
+# def fetch_books():
+#     with sqlite3.connect(DATABASE) as connection:
+#         # create a cursor object to interact with the database
+#         cursor = connection.cursor()
         
-        # a list of tuples
-        # each tuple is a record/row in the database
-        records = cursor.execute(FETCH_ALL_RECORDS).fetchall()
+#         # a list of tuples
+#         # each tuple is a record/row in the database
+#         records = cursor.execute(FETCH_ALL_RECORDS).fetchall()
         
-        return records
+#         return records
         
 # def print_books():
 #             # display all books
