@@ -106,16 +106,16 @@ class LibraryApp:
         # clear input fields button
         # used format from AI code
         self.clear_input_fields_button = tk.Button(self.button_frame, text="Clear Input Fields", command=self.clear_input_fields)
-        self.clear_input_fields_button.pack(side="top", fill="x", padx=5, pady=7)
+        self.clear_input_fields_button.pack(side="top", fill="x", padx=5, pady=0)
         
         # close app button
         # used format from AI code
         self.close_app_button = tk.Button(self.button_frame, text="Close App", command=self.close_app)
-        self.close_app_button.pack(side="top", fill="x", padx=5, pady=7)
+        self.close_app_button.pack(side="top", fill="x", padx=5, pady=0)
         
         # clear database button
         # used format from AI code
-        self.clear_database_button = tk.Button(self.button_frame, text="Clear Database", command=library_database.clear_database)
+        self.clear_database_button = tk.Button(self.button_frame, text="Clear Database", command=self.call_clear_database)
         self.clear_database_button.pack(side="top", fill="x", padx=5, pady=0)
         
         
@@ -276,7 +276,9 @@ class LibraryApp:
     def close_app(self):
         self.main_app_window.quit()
     
-
+    def call_clear_database(self):
+        library_database.clear_database()
+        self.update_treeview()
 
 # initialize tkinter and run the app
 if __name__ == "__main__":
