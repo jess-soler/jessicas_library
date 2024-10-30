@@ -9,6 +9,9 @@
 import sqlite3
 from tkinter import messagebox
 import LibraryApp as LibraryApp
+import tkinter as tk
+
+
 
 DATABASE = 'library.db'
 
@@ -109,16 +112,49 @@ def edit_book():
         # create a cursor object to interact with the database
         cursor = connection.cursor()
         
+        # AI Code
+        selected_item = LibraryApp.tree.selection()
+        if not selected_item:
+            messagebox.showwarning("Edit Book", "Please select a book from the database.")
+            return
+        
+        # AI Code
+        # get the book details from the selected item
+        book_details = LibraryApp.tree.item(selected_item)["values"]
+        
+        # AI Code
+        # populate input fields with current details
+        LibraryApp.title_entry.delete(0, tk.END)
+        LibraryApp.title_entry.insert(0, book_details[1])
+        LibraryApp.author_entry.delete(0, tk.END)
+        LibraryApp.author_entry.insert(0, book_details[2])
+        LibraryApp.genre_entry.delete(0, tk.END)
+        LibraryApp.genre_entry.insert(0, book_details[3])
+        LibraryApp.rating_entry.delete(0, tk.END)
+        LibraryApp.rating_entry.insert(0, book_details[4])
+        LibraryApp.pub_date_entry.delete(0, tk.END)
+        LibraryApp.pub_date_entry.insert(0, book_details[5])
+
+        
+def save_book():
+    with sqlite3.connect(DATABASE) as connection:
+    
+        # create a cursor object to interact with the database
+        cursor = connection.cursor()
+        
         # .get() the text from the entry field
         bk_title = LibraryApp.title_entry.get()
         bk_author = LibraryApp.author_entry.get()
         bk_genre = LibraryApp.genre_entry.get()
         bk_rating = LibraryApp.rating_entry.get()
-        bk_pub_date = LibraryApp.pub_date_entry.get()
+        bk_pub_date = LibraryApp.pub_date_entry.get()  
         
-        # update the selected record
-        cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
+    
+    # update the selected record
+    cursor.execute(UPDATE_RECORD, (bk_title, bk_author, bk_genre, bk_rating, bk_pub_date))
+    
+    LibraryApp.update_treeview()
+    LibraryApp.clear_input_fields()
+    messagebox.showinfo("Book Updated", "Book has been updated.")
 
-        
-    def save_book():
-        pass
+    

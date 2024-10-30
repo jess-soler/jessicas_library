@@ -210,33 +210,8 @@ class LibraryApp:
         
         
     def call_edit_book(self):
-        # AI Code
-        selected_item = self.tree.selection()
-        if not selected_item:
-            messagebox.showwarning("Edit Book", "Please select a book from the database.")
-            return
-        
-        # AI Code
-        # get the book details from the selected item
-        book_details = self.tree.item(selected_item)["values"]
-        
-        # AI Code
-        # populate input fields with current details
-        self.title_entry.delete(0, tk.END)
-        self.title_entry.insert(0, book_details[1])
-        self.author_entry.delete(0, tk.END)
-        self.author_entry.insert(0, book_details[2])
-        self.genre_entry.delete(0, tk.END)
-        self.genre_entry.insert(0, book_details[3])
-        self.rating_entry.delete(0, tk.END)
-        self.rating_entry.insert(0, book_details[4])
-        self.pub_date_entry.delete(0, tk.END)
-        self.pub_date_entry.insert(0, book_details[5])
-        
         library_database.edit_book()
-        self.update_treeview()
-        self.clear_input_fields()
-        messagebox.showinfo("Book Updated", "Book has been updated.")
+        
         
     def call_delete_book(self):
         selected_item = self.tree.selection()
@@ -248,6 +223,7 @@ class LibraryApp:
         book_id = self.tree.item(selected_item)["values"][0]
         library_database.delete_book(book_id)
         self.update_treeview()
+        
         
     def call_save_book(self):
         library_database.save_book()
