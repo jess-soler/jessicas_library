@@ -77,8 +77,7 @@ class LibraryApp:
         self.database_display_frame = tk.Frame(self.main_app_window, bd=2, relief=tk.RAISED)
         self.database_display_frame.place(x=10, y=250, width=1180, height=240)
         
-        
-        
+              
     def create_buttons(self):
         # add, edit, delete, save, clear input fields, close buttons
         
@@ -151,8 +150,7 @@ class LibraryApp:
         self.pub_date_entry = tk.Entry(self.input_frame)
         self.pub_date_entry.pack(fill="x", padx=5, pady=2)
         
-        
-        
+         
     def create_database_display(self):
         # create a treeview to display the database
         # AI Code, edited
@@ -165,15 +163,14 @@ class LibraryApp:
         self.tree.heading("Publication Date", text="Publication Date")
         self.tree.pack(fill="both", expand=True)        
         
-        # insert data into treeview
-        self.update_treeview()
-        
         # add a scrollbar
         scrollbar = ttk.Scrollbar(self.database_display_frame, orient="vertical", command=self.tree.yview)
         scrollbar.pack(side="right", fill="y")
         self.tree.configure(yscrollcommand=scrollbar.set)
         
         self.tree.pack(padx=10, pady=10, fill="both", expand=True)
+
+        self.update_treeview()
 
     def update_treeview(self):
         # AI Code
@@ -187,7 +184,7 @@ class LibraryApp:
         
         # insert the updated records into the treeview
         for book in books:
-            self.tree.insert("", "end", text=book[0], values=(book[1], book[2], book[3], book[4], book[5]))
+            self.tree.insert("", "end", values=book))
         
 #---WRAPPER FUNCTIONS----------------------------------------------------------------------------------------------------#
 # Call to: library_database.py
@@ -204,6 +201,9 @@ class LibraryApp:
         
         library_database.add_book(title, author, genre, rating, pub_date)
         self.update_treeview()
+        
+        # clear fields after adding a book
+        self.clear_input_fields()
         
         
     def call_edit_book(self):
