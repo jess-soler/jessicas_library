@@ -109,8 +109,19 @@ class LibraryApp:
         self.close_app_button = tk.Button(self.button_frame, text="Close App", command=self.close_app)
         self.close_app_button.pack(side="top", fill="x", padx=5, pady=15)
         
-
+        # clear input fields button
+        # used format from AI code
+        self.clear_input_fields_button = tk.Button(self.button_frame, text="Clear Input Fields", command=self.clear_input_fields)
+        self.clear_input_fields_button.pack(side="top", fill="x", padx=5, pady=15)
         
+
+    def clear_input_fields(self):
+        # AI Code
+        self.title_entry.delete(0, tk.END)
+        self.author_entry.delete(0, tk.END)
+        self.genre_entry.delete(0, tk.END)
+        self.rating_entry.delete(0, tk.END)
+        self.pub_date_entry.delete(0, tk.END)
         
         
     def create_input_fields(self):
