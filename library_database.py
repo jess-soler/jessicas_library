@@ -8,9 +8,6 @@
 # Import sqlite3 database library
 import sqlite3
 from tkinter import messagebox
-import LibraryApp as LibraryApp
-import tkinter as tk
-
 
 
 DATABASE = 'library.db'
