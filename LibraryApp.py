@@ -3,6 +3,14 @@
 # to function in one window
 # I then edited the code to fit the program per my preferences
 
+
+
+
+#TODO: turn db_book and db_author into classes
+#TODO: adjust functions to work with classes
+#TODO: create tables
+#TODO: Make sure GUI works with new classes
+
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
