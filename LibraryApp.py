@@ -8,7 +8,8 @@ from tkinter import messagebox
 from tkinter import ttk
 
 # import the library_database module
-import library_database
+import db_book
+import db_author
 
 #----Class----------------------------------------------------------------------------------------------------#
 class LibraryApp:
@@ -28,6 +29,8 @@ class LibraryApp:
         
         # set up database display
         self.create_database_display()
+        
+        #CREATE TABELS#
         
         # run window
         self.main_app_window.mainloop()
@@ -188,7 +191,7 @@ class LibraryApp:
             self.tree.delete(item)
             
         # fetch updated records from the database
-        books = library_database.fetch_books()
+        books = db_book.fetch_books()
         
         # insert the updated records into the treeview
         for book in books:
@@ -217,7 +220,7 @@ class LibraryApp:
         title, author, genre, rating, pub_date = self.get_entry()
 
         # call database function to add a book
-        library_database.add_book(title, author, genre, rating, pub_date)
+        db_book.add_book(title, author, genre, rating, pub_date)
         
         # update the treeview after adding a book
         self.update_treeview()
@@ -254,7 +257,7 @@ class LibraryApp:
             return
         
         book_id = self.tree.item(selected_item)["values"][0]
-        library_database.delete_book(book_id)
+        db_book.delete_book(book_id)
         self.update_treeview()
         
         
@@ -267,7 +270,7 @@ class LibraryApp:
         bk_genre = self.genre_entry.get()
         bk_rating = self.rating_entry.get()
         bk_pub_date = self.pub_date_entry.get()  
-        library_database.save_book(bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date)
+        db_book.save_book(bk_id, bk_title, bk_author, bk_genre, bk_rating, bk_pub_date)
         
         self.update_treeview()
         self.clear_input_fields()

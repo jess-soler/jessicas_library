@@ -16,14 +16,12 @@ DATABASE = 'library.db'
 # SQL statements are text. SQL queries can be very long.
 # A SQL statement can be assigned to a string variable.
 
+# bk_author TEXT, 
 CREATE_TABLE = """
-    CREATE TABLE IF NOT EXISTS tbl_book (
-        bk_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        bk_title TEXT,
-        bk_author TEXT, 
-        bk_genre TEXT,
-        bk_rating INTEGER,
-        bk_pub_date TEXT
+    CREATE TABLE IF NOT EXISTS tbl_author (
+        auth_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        auth_fname TEXT,
+        auth_lname TEXT,
     );
 """
 
