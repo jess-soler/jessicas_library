@@ -1,2 +1,2 @@
 # jessicas_library
-Database of my personal library
+Personal Library Application using Python and SQLite
